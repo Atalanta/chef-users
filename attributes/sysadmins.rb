@@ -1,1 +1,1 @@
-node['users']['sharing_user']
+default['users']['sharing_user']
