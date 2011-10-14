@@ -3,7 +3,7 @@ sysadmin_group = Array.new
 search(:users, 'groups:sysadmin') do |u|
   sysadmin_group << u['id']
 
-  home_dir = node['users']['home_base']
+  home_dir = ::File.join(node['users']['home_base'], u['id'])
 
   # fixes CHEF-1699
   ruby_block "reset group list" do
