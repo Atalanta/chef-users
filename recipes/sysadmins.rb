@@ -1,3 +1,4 @@
+sysdmin_group = Array.new
 
 search(:users, 'groups:sysadmin') do |u|
   sysadmin_group << u['id']
