@@ -1,0 +1,8 @@
+#	 This file is managed by Chef
+# 	 Do not edit it in place on the system
+#        This is the default standard profile provided to a user.
+#        They are expected to edit it to meet their own needs.
+
+MAIL=/usr/mail/${LOGNAME:?}
+export TERMINFO=/ec/share/terminfo
+export TERM=xterm-color
