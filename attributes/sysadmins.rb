@@ -1,1 +1,2 @@
-default['users']['sharing_user']
+default['users']['home_base'] = '/export/home'
+
