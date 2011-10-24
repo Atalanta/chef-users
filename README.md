@@ -54,7 +54,7 @@ Sets up a user for collaborative co-working, with an authorized_keys file contai
 sysadmins
 ---------
 
-Creates a sysadmin group and users according to the `users` databag.  Drops off ssh public keys for each user in the sysadmin group.  Drops of a GNU screen config file with useful defaults, together with a shell profile to improve user experience on Solaris.
+Creates a sysadmin group and users according to the `users` databag.  Drops off ssh public keys for each user in the sysadmin group.  Drops off a GNU screen config file with useful defaults, together with a shell profile to improve user experience on Solaris.
 
 Usage
 =====
