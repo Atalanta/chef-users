@@ -74,22 +74,6 @@ search(:users, 'groups:sysadmin') do |u|
   end
 end
 
-# Adding profile and screenrc files for root user
-
-if platform?("solaris2")
-  cookbook_file "/root/.profile" do
-    source "profile"
-    owner root
-    group root
-  end
-end
-
-cookbook_file "/root/.screenrc" do
-  source "screenrc"
-  owner root
-  group root
-end
-
 group "sysadmin" do
   gid 2300
   members sysadmin_group
