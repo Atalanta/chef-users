@@ -31,7 +31,6 @@ search(:users, 'groups:sysadmin') do |u|
     command "passwd -d #{u['id']}"
     action :nothing
   end
-
   
   user u['id'] do
     uid u['uid']
@@ -73,6 +72,22 @@ search(:users, 'groups:sysadmin') do |u|
     mode "0600"
     variables :ssh_keys => u['ssh_keys']
   end
+end
+
+# Adding profile and screenrc files for root user
+
+if platform?("solaris2")
+  cookbook_file "/root/.profile" do
+    source "profile"
+    owner root
+    group root
+  end
+end
+
+cookbook_file "/root/.screenrc" do
+  source "screenrc"
+  owner root
+  group root
 end
 
 group "sysadmin" do
