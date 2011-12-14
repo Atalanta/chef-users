@@ -1,0 +1,7 @@
+# For emacs:
+*~
+\#*
+.\#*
+
+# For vim:
+*.swp
