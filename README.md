@@ -46,7 +46,7 @@ Recipes
 default
 -------
 
-A placeholder - doesn't do anything.
+Add screenrc and profile files to root user homedir.
 
 sharing
 -------
