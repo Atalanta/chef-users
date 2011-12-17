@@ -49,6 +49,7 @@ search(:users, 'groups:sysadmin') do |u|
     owner u['id']
     group u['gid'] || u['id']
     mode "0700"
+    recursive true
   end
 
   if platform?("solaris2")
