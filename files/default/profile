@@ -7,4 +7,4 @@ MANPATH=/ec/share/man:${MANPATH:=/usr/share/man}
 export MANPATH
 MAIL=/usr/mail/${LOGNAME:?}
 export TERMINFO=/ec/share/terminfo
-export TERM=xterm
+export TERM=dtterm
