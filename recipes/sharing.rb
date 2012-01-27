@@ -1,5 +1,7 @@
 sharing_user = node['users']['sharing_user']
-home_dir = ::File.join(node['users']['base_home'], sharing_user)
+puts "sharing user: #{sharing_user}"
+puts "base name #{node['users']['home_base']}"
+home_dir = ::File.join(node['users']['home_base'], sharing_user)
 
 ruby_block "reset group list" do
   block do
