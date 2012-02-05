@@ -8,3 +8,4 @@ def shell_for_platform(shell)
   Chef::Log.debug("shell: #{shell}")
  ::File.join(basename, shell)
 end
+
