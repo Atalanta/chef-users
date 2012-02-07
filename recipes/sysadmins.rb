@@ -5,6 +5,20 @@ search(:users, 'groups:sysadmin') do |u|
 
   home_dir = ::File.join(node['users']['home_base'], u['id'])
 
+  unless platform?("solaris2")
+    gid = u['id']
+  end
+  
+  if u.has_key?("shell")
+    if u["shell"].scan('/').count == 0
+      shell = shell_for_platform(u["shell"])
+    else
+      shell = u["shell"]
+    end
+  else
+    shell = shell_for_platform(node["users"]["shell"])
+  end
+    
   # fixes CHEF-1699
   ruby_block "reset group list" do
     block do
@@ -22,7 +36,7 @@ search(:users, 'groups:sysadmin') do |u|
   user u['id'] do
     uid u['uid']
     gid u['gid']
-    shell u['shell']
+    shell shell
     comment u['comment']
     supports :manage_home => true
     home home_dir

@@ -29,6 +29,8 @@ sysadmins
 ---------
 
 * `node['users']['home_base']` - base directory where user home directories live.  Default is `/home`
+* `node['users']['shell']` - name of the shell to be used as a failback in case of an entry in the users databag being absent.  Default is `bash`
+
 
 sharing
 -------
@@ -65,9 +67,11 @@ The `users::sysadmins` recipe relies upon a databag called `users`.  Each data b
       "id": "konstantin",
       "ssh_keys": "ssh-rsa AAAAB3Nz...yhCw== konstantin",
       "groups": "sysadmin",
-      "shell": "\/bin\/bash",
+      "shell": "bash",
       "comment": "Konstantin Lysenko"
     }
+
+The shell should be set to the *name* of the shell required.  The recipe will calculate the correct path dependent on the platform.  If a full path is specified, this will take precedence, and no such calculation will be made.
 
 Create the data bag:
 
@@ -87,7 +91,15 @@ Upload the data bag:
 
     knife data bag from file user.json
 
-Ensure the user's public ssh key is entered into the ssh_keys value.  The `users::sysadmins` recipe will create a `sysadmin` group with the id of 2300.  If the user is set to be in this group, their key will be dropped off, and key-based ssh will be possible.  Ensure that the path to the shell you specify in the data bag exists.
+Ensure the user's public ssh key is entered into the ssh_keys value.  The `users::sysadmins` recipe will create a `sysadmin` group with the id of 2300.  If the user is set to be in this group, their key will be dropped off, and key-based ssh will be possible.
+
+The home_base attribute may be set on the role using, for example:
+
+    default_attributes(
+                       "users" => {
+                         "home_base" => '/home'
+                       }
+                       )
 
 Changes/Roadmap
 ===============
@@ -96,9 +108,10 @@ Changes/Roadmap
 
 * Make sharing authorized_keys dynamic rather than static, probably iterating over a databag with an element indicating if the user should be a sharer.
 
-## 1.0.0:
+## 2.0.3
 
-* Initial release
+* Support calculation of shell path for Solaris, FreeBSD and other platforms
+* Support different group setting behaviour for Solaris and Linux
 
 License and Author
 ==================
