@@ -29,7 +29,7 @@ sysadmins
 ---------
 
 * `node['users']['home_base']` - base directory where user home directories live.  Default is `/home`
-* `node['users']['shell']` - name of the shell to be used as a failback in case of an entry in the users databag being absent.  Default is `bash`
+* `node['users']['shell']` - name of the shell to be used as a failback in case of an entry in the users databag being absent.  Default is `bash`.  Note this is the shell *name* not the path to the shell.
 
 
 sharing
@@ -46,7 +46,7 @@ Recipes
 default
 -------
 
-A placeholder - doesn't do anything.
+Add screenrc and profile files to root user homedir.
 
 sharing
 -------
