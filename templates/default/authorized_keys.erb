@@ -1,6 +1,9 @@
-# Dropped off by Chef, thanks! 
-<% if @ssh_keys.respond_to? :each %>
-<%= @ssh_keys.join('\n') %> 
+# Dropped off by Chef, thanks!
+<% Chef::Log.info(@ssh_keys.inspect) %> 
+<% unless @ssh_keys.kind_of?(String) %>
+# <%= @ssh_keys %> is iterable
+<%= @ssh_keys.join("\n") %> 
 <% else %> 
+# <%= @ssh_keys %> not iterable. 
 <%= @ssh_keys %> 
 <% end %>

@@ -6,9 +6,7 @@ search(:users, 'groups:sysadmin') do |u|
   home_dir = ::File.join(node['users']['home_base'], u['id'])
   ::Chef::Log.debug("Setting home directory to: #{home_dir}")
   
-  unless platform?("solaris2")
-    gid = u['id']
-  end
+  group = platform?("solaris2") ? u['gid'] : u['id']
 
   shell = u.has_key?("shell") ? shell_for_platform(u["shell"]) : shell_for_platform(node["users"]["shell"])    
   
@@ -37,7 +35,7 @@ search(:users, 'groups:sysadmin') do |u|
   
   user u['id'] do
     uid u['uid']
-    gid u['gid']
+    gid group
     shell shell
     comment u['comment']
     supports :manage_home => true
