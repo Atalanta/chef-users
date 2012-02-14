@@ -7,6 +7,9 @@ search(:users, 'groups:sysadmin') do |u|
   Chef::Log.debug("Setting home directory to: #{home_dir}")
   
   group = platform?("solaris2") ? u['gid'] : u['id']
+
+
+
   Chef::Log.debug("*+*+*+*+*+*+>>>> Group is #{group}")
 
   shell = u.has_key?("shell") ? shell_for_platform(u["shell"]) : shell_for_platform(node["users"]["shell"])    
@@ -53,7 +56,7 @@ search(:users, 'groups:sysadmin') do |u|
   
   directory "#{home_dir}/.ssh" do
     owner u['id']
-    group u['gid'] || u['id']
+    group group
     mode "0700"
     recursive true
   end
@@ -62,20 +65,20 @@ search(:users, 'groups:sysadmin') do |u|
     cookbook_file "#{home_dir}/.profile" do
       source "profile"
       owner u['id']
-      group u['gid'] || u['id']
+      group group
     end
   end
   
   cookbook_file "#{home_dir}/.screenrc" do
     source "screenrc"
     owner u['id']
-    group u['gid'] || u['id']
+    group group
   end
   
   template "#{home_dir}/.ssh/authorized_keys" do
     source "authorized_keys.erb"
     owner u['id']
-    group u['gid'] || u['id']
+    group group
     mode "0600"
     variables :ssh_keys => u['ssh_keys']
   end
