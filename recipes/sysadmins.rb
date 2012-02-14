@@ -35,7 +35,9 @@ search(:users, 'groups:sysadmin') do |u|
   
   user u['id'] do
     uid u['uid']
-    gid group
+    if node['os'] != "linux"
+      gid group 
+    end
     shell shell
     comment u['comment']
     supports :manage_home => true
