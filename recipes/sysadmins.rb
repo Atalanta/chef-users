@@ -4,9 +4,10 @@ search(:users, 'groups:sysadmin') do |u|
   sysadmin_group << u['id']
   
   home_dir = ::File.join(node['users']['home_base'], u['id'])
-  ::Chef::Log.debug("Setting home directory to: #{home_dir}")
+  Chef::Log.debug("Setting home directory to: #{home_dir}")
   
   group = platform?("solaris2") ? u['gid'] : u['id']
+  Chef::Log.debug("*+*+*+*+*+*+>>>> Group is #{group}")
 
   shell = u.has_key?("shell") ? shell_for_platform(u["shell"]) : shell_for_platform(node["users"]["shell"])    
   
@@ -18,7 +19,7 @@ search(:users, 'groups:sysadmin') do |u|
   #   end
   # else
 
-  ::Chef::Log.debug("Shell calculated to be #{shell}")                  
+  Chef::Log.debug("Shell calculated to be #{shell}")                  
 
   # fixes CHEF-1699
   ruby_block "reset group list" do
@@ -35,7 +36,9 @@ search(:users, 'groups:sysadmin') do |u|
   
   user u['id'] do
     uid u['uid']
+    Chef::Log.debug("*+*+*+*+*+*+>>>> OS is #{node['os']}")
     if node['os'] != "linux"
+      Chef::Log.debug("*+*+*+*+*+*+>>>> I don't  think I am linux")
       gid group 
     end
     shell shell
