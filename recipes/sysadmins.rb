@@ -8,10 +8,6 @@ search(:users, 'groups:sysadmin') do |u|
   
   group = platform?("solaris2") ? u['gid'] : u['id']
 
-
-
-  Chef::Log.debug("*+*+*+*+*+*+>>>> Group is #{group}")
-
   shell = u.has_key?("shell") ? shell_for_platform(u["shell"]) : shell_for_platform(node["users"]["shell"])    
   
   # if u.has_key?("shell")
@@ -39,9 +35,7 @@ search(:users, 'groups:sysadmin') do |u|
   
   user u['id'] do
     uid u['uid']
-    Chef::Log.debug("*+*+*+*+*+*+>>>> OS is #{node['os']}")
     if node['os'] != "linux"
-      Chef::Log.debug("*+*+*+*+*+*+>>>> I don't  think I am linux")
       gid group 
     end
     shell shell
