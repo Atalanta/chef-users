@@ -101,17 +101,11 @@ The home_base attribute may be set on the role using, for example:
                        }
                        )
 
-Changes/Roadmap
+TODO
 ===============
-
-## Future
 
 * Make sharing authorized_keys dynamic rather than static, probably iterating over a databag with an element indicating if the user should be a sharer.
 
-## 2.0.3
-
-* Support calculation of shell path for Solaris, FreeBSD and other platforms
-* Support different group setting behaviour for Solaris and Linux
 
 License and Author
 ==================
