@@ -10,7 +10,7 @@
 
 users = []
 
-search(:users, '*') do |u|
+search(:users, '*:*') do |u|
   users << u['id']
 end
 
