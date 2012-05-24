@@ -5,6 +5,3 @@ case platform
   else
     default['users']['home_base'] = '/home'
 end
-
-default['users']['clean'] = true
-default['users']['token_group'] = "atalanta"

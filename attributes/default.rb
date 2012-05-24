@@ -4,3 +4,5 @@ default['users']['sharing_shell']   = '/bin/bash'
 default['users']['sharing_tools']   = ['git', 'emacs', 'screen', 'mg', 'irssi']
 default['users']['home_base'] = '/export/home'
 default['users']['shell'] = 'bash'
+default['users']['clean'] = true
+default['users']['token_group'] = "atalanta"
