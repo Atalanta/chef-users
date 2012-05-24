@@ -18,9 +18,3 @@ if platform?("solaris2")
   end
 end
 
-cookbook_file "/root/.screenrc" do
-  source "screenrc"
-  owner "root"
-  group "root"
-  mode "0644"
-end
