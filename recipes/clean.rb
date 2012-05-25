@@ -18,4 +18,5 @@ end
 group "#{node[:users][:token_group]}" do
   members users
   append true
+  ignore_failure true
 end
