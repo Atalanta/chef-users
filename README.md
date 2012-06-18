@@ -43,8 +43,8 @@ sharing
 * `node['users']['sharing_tools']` - an array of packages to install for collaborative purposes.  Take care, as only primitive checking is done to ensure the package name is correct for the platform.
 clean
 -----
-* `node['users']['clean']` - Should we start cleaning. Default is
-`true`.
+* `node['users']['clean']` - if set to true - then clean recipe will
+be called from default recipe. Default is `false`.
 * node['users']['token_group'] - group that designates users from
 users recipe. default is `atalanta`.
 
