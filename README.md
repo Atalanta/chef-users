@@ -17,10 +17,12 @@ Tested on:
 Data bag named `users` must exist.
 
 ## Cookbooks
+### users::default cookbook
 
 If running on Solaris 10, the system needs to have been bootstrapped to use the publically provided EveryCity IPS/pkg(5) repository at http://s10.pkg.ec.  In the Atalanta Systems environment this is still done manually, and no cookbook or bootstrap mechanism exists for this.
 
 To use the `users` cookbook in a Solaris 10 environment as described, you must have the `solaris` cookbook at the head of your run list.
+
 
 Attributes
 ==========
@@ -39,6 +41,12 @@ sharing
 * `node['users']['sharing_comment']` - the user comment for the sharing user.  Default is `Atalanta Systems Engineering`
 * `node['users']['sharing_shell']` - the login shell for the sharing user.  Default is `/bin/bash`
 * `node['users']['sharing_tools']` - an array of packages to install for collaborative purposes.  Take care, as only primitive checking is done to ensure the package name is correct for the platform.
+clean
+-----
+* `node['users']['clean']` - Should we start cleaning. Default is
+`true`.
+* node['users']['token_group'] - group that designates users from
+users recipe. default is `atalanta`.
 
 Recipes
 =======
@@ -57,6 +65,14 @@ sysadmins
 ---------
 
 Creates a sysadmin group and users according to the `users` databag.  Drops off ssh public keys for each user in the sysadmin group.  Drops off a GNU screen config file with useful defaults, together with a shell profile to improve user experience on Solaris.
+
+clean
+-----
+
+  * Create group from node['users']['token_group'] if not exist.
+  * All users from users databag added to this group.
+  * if there is a users in this group, but not in the databag - those
+  users will be deleted.
 
 Usage
 =====

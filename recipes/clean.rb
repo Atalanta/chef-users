@@ -8,15 +8,13 @@
 #
 # Recipe that cleans old users from system.
 
-users = []
-
-search(:users, '*:*') do |u|
-  users << u['id']
-end
-
-# Create token group
+# Create token group if not exist
 group "#{node[:users][:token_group]}" do
-  members users
   append true
   ignore_failure true
+end
+
+search(:users, '*:*') do |u|
+  # Check that user exist
+  u['id']
 end
