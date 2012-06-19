@@ -31,12 +31,19 @@ end
 
 # Delete users that in token_group, but not in 'users' databag.
 ## Create array of users in 'users' databag
+databag_users = []
 users = data_bag('users')
-##users.each do |user|
-##end
+users.each do |user|
+  databag_users << user['id']
+end
 
 ## Create array of users in token group
+token_group_users = []
+node["etc"]["group"]["#{node[:users][:token_group]}"]["members"].each { |member| token_group_users << member}
 
 ## Create array of users for deletion
+users_to_delete = token_group_users - databag_users
 
 ## Delete users
+
+puts "we should delete users: #{users_to_delete}"
