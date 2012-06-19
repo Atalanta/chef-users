@@ -10,7 +10,7 @@
 
 # Create token group if not exist
 if not node[:etc][:group].include?(node[:users][:token_group])
-  group "#{node[:users][:token_group]}"
+  group "#{node[:users][:token_group]}" do
     action :create
   end
 end
