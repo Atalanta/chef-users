@@ -31,10 +31,11 @@ end
 
 # Delete users that in token_group, but not in 'users' databag.
 ## Create array of users in 'users' databag
+### There is some error here, I got array like: [nil, nil, nil, nil,nil, nil, nil, nil, nil, nil, nil]
 databag_users = []
 users = data_bag('users')
 users.each do |user|
-  databag_users << user['id']
+  databag_users << user[:id]
 end
 
 ## Create array of users in token group
