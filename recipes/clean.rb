@@ -30,8 +30,13 @@ search(:users, '*:*') do |u|
 end
 
 # Delete users that in token_group, but not in 'users' databag.
-# Create list of 
-
+## Create array of users in 'users' databag
 users = data_bag('users')
 ##users.each do |user|
 ##end
+
+## Create array of users in token group
+
+## Create array of users for deletion
+
+## Delete users
