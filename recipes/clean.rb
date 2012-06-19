@@ -9,7 +9,11 @@
 # Recipe that cleans old users from system.
 
 # Create token group if not exist
-group "#{node[:users][:token_group]}"
+if not node[:etc][:group].include?(node[:users][:token_group])
+  group "#{node[:users][:token_group]}"
+    action :create
+  end
+end
 
 # Add users from 'users' databag to token_group. if they're exist in system.
 
