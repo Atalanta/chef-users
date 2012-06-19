@@ -121,8 +121,8 @@ TODO
 ===============
 
 * Add clean recipe that clean users that was deleted from users data bag
-  * Add check of user existence using node[:etc][:passwd] attribute.
   * Add deletion of users not in token group
+  * Manifestly check that token group exist. Create token group only if it exist.
 * Make sharing authorized_keys dynamic rather than static, probably iterating over a databag with an element indicating if the user should be a sharer.
 
 
