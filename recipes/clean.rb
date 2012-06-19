@@ -46,4 +46,6 @@ users_to_delete = token_group_users - databag_users
 
 ## Delete users
 
-puts "we should delete users: #{users_to_delete}"
+puts "users in users databag: #{databag_users}"
+puts "users in token group: #{token_group_users}"
+puts "We should delete users: #{users_to_delete}"
