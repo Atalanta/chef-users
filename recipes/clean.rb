@@ -15,7 +15,6 @@ group "#{node[:users][:token_group]}"
 
 search(:users, '*:*') do |u|
   # Check that user exist
-  puts "#{u[:id]}"
   if node[:etc][:passwd].include?(u['id'])
     # if user from 'users' databag exist - add it to token_group 
     group "#{node[:users][:token_group]}" do
