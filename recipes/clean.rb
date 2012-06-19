@@ -12,8 +12,10 @@
 group "#{node[:users][:token_group]}"
 
 # Add users from 'users' databag to token_group. if they're exist in system.
-search(:users, '*:*') do |u|
+users = data_bag('users')
+users.each do |u|
   # Check that user exist
+  puts "#{u[:id]}"
   if node[:etc][:passwd].include?(u['id'])
     # if user from 'users' databag exist - add it to token_group 
     group "#{node[:users][:token_group]}" do
@@ -25,3 +27,7 @@ search(:users, '*:*') do |u|
 end
 
 # Delete users that in token_group, but not in 'users' databag.
+# Create list of 
+
+##users.each do |user|
+##end
