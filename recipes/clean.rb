@@ -17,6 +17,7 @@ end
 
 # Add users from 'users' databag to token_group. if they're exist in system.
 
+databag_users = []
 search(:users, '*:*') do |u|
   # Check that user exist
   if node[:etc][:passwd].include?(u['id'])
@@ -27,16 +28,11 @@ search(:users, '*:*') do |u|
       members u['id']
     end
   end
+  # Create array of users in 'users' databag,We will need that array later
+  databag_users << u[:id]
 end
 
-# Delete users that in token_group, but not in 'users' databag.
-## Create array of users in 'users' databag
-### There is some error here, I got array like: [nil, nil, nil, nil,nil, nil, nil, nil, nil, nil, nil]
-databag_users = []
-users = data_bag('users')
-search(:users,"*:*") do |user|
-  databag_users << user[:id]
-end
+# Delete users that in token_group, but not in 'users' databag
 
 ## Create array of users in token group
 token_group_users = []
