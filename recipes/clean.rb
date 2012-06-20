@@ -35,7 +35,8 @@ end
 databag_users = []
 users = data_bag('users')
 users.each do |user|
-  databag_users << user[:id]
+  databag_user = data_bag_item('users',user)
+  databag_users << databag_user[:id]
 end
 
 ## Create array of users in token group
