@@ -83,3 +83,9 @@ group "sysadmin" do
   members sysadmin_group
   append true
 end
+
+# If node[:users][:clean] attribute set to true - activate clean
+# recipe, by default it's false.
+if node[:users][:clean]
+  include_recipe "users::clean"
+end 

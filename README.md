@@ -41,10 +41,11 @@ sharing
 * `node['users']['sharing_comment']` - the user comment for the sharing user.  Default is `Atalanta Systems Engineering`
 * `node['users']['sharing_shell']` - the login shell for the sharing user.  Default is `/bin/bash`
 * `node['users']['sharing_tools']` - an array of packages to install for collaborative purposes.  Take care, as only primitive checking is done to ensure the package name is correct for the platform.
+
 clean
 -----
 * `node['users']['clean']` - if set to true - then clean recipe will
-be called from default recipe. Default is `false`.
+be called from default and sysadmins recipe. Default is `false`.
 * node['users']['token_group'] - group that designates users from
 users recipe. default is `atalanta`.
 
