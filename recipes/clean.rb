@@ -43,6 +43,9 @@ users_to_delete = token_group_users - databag_users
 
 ## Delete users
 
-puts "users in users databag: #{databag_users}"
-puts "users in token group: #{token_group_users}"
-puts "We should delete users: #{users_to_delete}"
+users_to_delete.each do |user_to_delete|
+  user do
+    action :remove
+    username "#{user_to_delete}"
+  end
+end
