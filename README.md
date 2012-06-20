@@ -69,7 +69,6 @@ Creates a sysadmin group and users according to the `users` databag.  Drops off 
 
 clean
 -----
-
   * Create group from node['users']['token_group'] if not exist.
   * All users from users databag added to this group.
   * if there is a users in this group, but not in the databag - those
@@ -121,12 +120,6 @@ The home_base attribute may be set on the role using, for example:
 TODO
 ===============
 
-* Add clean recipe that clean users that was deleted from users data bag
-  * Add deletion of users not in token group, 
-    I think that I can
-    substract array with users from 'users' databag from array with
-    token group's users to get array of users that in token group but
-    not in 'users' databag.
 * Make sharing authorized_keys dynamic rather than static, probably iterating over a databag with an element indicating if the user should be a sharer.
 
 
