@@ -26,13 +26,18 @@ if tgroup == nil
   end
 end
 
-# Create array with system users
 system_users = []
-Etc.passwd {|u|
-  system_users << u.name
-}
-
+# Create array with system users
+ruby_block "create_array_with_system_users" do
+  block do
+    Etc.passwd {|u|
+      system_users << u.name
+    }
+  puts system_users
+  end
+end
 # Add users from 'users' databag to token_group. if they're exist in system.
+
 databag_users = []
 search(:users, '*:*') do |u|
   # Check that user exist
