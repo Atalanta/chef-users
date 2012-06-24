@@ -36,7 +36,9 @@ end
 
 ## Create array of users in token group
 token_group_users = []
-node["etc"]["group"]["#{node[:users][:token_group]}"]["members"].each { |member| token_group_users << member}
+if node["etc"]["group"]["#{node[:users][:token_group]}"] != nil
+  node["etc"]["group"]["#{node[:users][:token_group]}"]["members"].each { |member| token_group_users << member}
+end
 
 ## Create array of users for deletion
 users_to_delete = token_group_users - databag_users
