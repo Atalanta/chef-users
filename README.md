@@ -121,7 +121,8 @@ TODO
 * Move clean recipe part out of sysadmins recipe. It's there because
 chef calculates system users array before he adds new users with
 users::sysadmins recipe. May be I can throw away etc module in favour
-of ohai with ohai reload?
+of ohai with ohai reload? Or use ruby_block to calculate all stuff in
+execution time.
 * Make sharing authorized_keys dynamic rather than static, probably iterating over a databag with an element indicating if the user should be a sharer.
 
 
