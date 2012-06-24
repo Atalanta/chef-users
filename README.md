@@ -44,8 +44,6 @@ sharing
 
 clean
 -----
-* `node['users']['clean']` - if set to true - then clean recipe will
-be called from default and sysadmins recipe. Default is `false`.
 * node['users']['token_group'] - group that designates users from
 users recipe. default is `atalanta`.
 

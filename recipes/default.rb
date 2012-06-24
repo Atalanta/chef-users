@@ -17,8 +17,3 @@ if platform?("solaris2")
     mode "0644"
   end
 end
-
-# If node[:users][:clean] attribute set to true - activate clean recipe.
-if node[:users][:clean]
-  include_recipe "users::clean"
-end 
