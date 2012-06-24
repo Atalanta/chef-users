@@ -8,19 +8,36 @@
 #
 # Recipe that cleans old users from system.
 
+require "etc"
+
 # Create token group if not exist
-if not node[:etc][:group].include?(node[:users][:token_group])
+
+## Check that group is exist
+tgroup = begin
+  Etc.getgrnam("#{node[:users][:token_group]}")
+rescue ArgumentError
+  # Nothing to do.
+end
+
+## Create it if it's not exist
+if tgroup == nil
   group "#{node[:users][:token_group]}" do
     action :create
   end
 end
+
+# Create array with system users
+system_users = []
+Etc.passwd {|u|
+  system_users << u.name
+}
 
 # Add users from 'users' databag to token_group. if they're exist in system.
 
 databag_users = []
 search(:users, '*:*') do |u|
   # Check that user exist
-  if node[:etc][:passwd].include?(u['id'])
+  if system_users.include?(u['id'])
     # if user from 'users' databag exist - add it to token_group 
     group "#{node[:users][:token_group]}" do
       action :manage
@@ -36,8 +53,15 @@ end
 
 ## Create array of users in token group
 token_group_users = []
-if node["etc"]["group"]["#{node[:users][:token_group]}"] != nil
-  node["etc"]["group"]["#{node[:users][:token_group]}"]["members"].each { |member| token_group_users << member}
+
+tgroup = begin
+  Etc.getgrnam("#{node[:users][:token_group]}")
+rescue ArgumentError
+  # Nothing to do.
+end
+
+if tgroup != nil
+  token_group_users = tgroup.mem
 end
 
 ## Create array of users for deletion
