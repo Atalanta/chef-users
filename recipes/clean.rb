@@ -33,6 +33,7 @@ Etc.passwd {|u|
 }
 
 # Add users from 'users' databag to token_group. if they're exist in system.
+puts system_users
 
 databag_users = []
 search(:users, '*:*') do |u|
