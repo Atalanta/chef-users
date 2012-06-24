@@ -47,6 +47,27 @@ search(:users, 'groups:sysadmin') do |u|
       notifies :run, "execute[unlock-#{u['id']}]", :immediately
     end
   end
+
+  # Begin of part for support clean recipe
+  tgroup = begin
+    Etc.getgrnam("#{node[:users][:token_group]}")
+  rescue ArgumentError
+    # Nothing to do.
+  end
+
+  ## Add user to token group if it's exist if it's not exist
+  if tgroup == nil
+    group "#{node[:users][:token_group]}" do
+      action :create
+    end
+  end
+
+  group "#{node[:users][:token_group]}" do
+    action :manage
+    append true
+    members u['id']
+  end
+
   
   directory "#{home_dir}/.ssh" do
     owner u['id']

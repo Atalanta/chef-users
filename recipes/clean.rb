@@ -33,8 +33,6 @@ Etc.passwd {|u|
 }
 
 # Add users from 'users' databag to token_group. if they're exist in system.
-puts system_users
-
 databag_users = []
 search(:users, '*:*') do |u|
   # Check that user exist
@@ -46,7 +44,7 @@ search(:users, '*:*') do |u|
       members u['id']
     end
   end
-  # Create array of users in 'users' databag,We will need that array later
+  # Create array of users in 'users' databag, We will need that array later
   databag_users << u[:id]
 end
 
