@@ -90,7 +90,7 @@ The shell should be set to the *name* of the shell required.  The recipe will ca
 Create the data bag:
 
     knife data bag create users
-    
+
 Create the data bag entry:
 
     cd $CHEF_REPO/databags/users
@@ -103,7 +103,7 @@ Create the data bag entry:
 
 Upload the data bag:
 
-    knife data bag from file user.json
+    knife data bag from file users user.json
 
 Ensure the user's public ssh key is entered into the ssh_keys value.  The `users::sysadmins` recipe will create a `sysadmin` group with the id of 2300.  If the user is set to be in this group, their key will be dropped off, and key-based ssh will be possible.
 
@@ -130,4 +130,4 @@ License and Author
 
 Author:: Atalanta Systems (<support@atalanta-systems.com>)
 
-Copyright:: 2011, Atalanta Systems Ltd
+Copyright:: 2012, Atalanta Systems Ltd
