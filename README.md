@@ -17,6 +17,9 @@ Tested on:
 Data bag named `users` must exist.
 
 ## Cookbooks
+
+Depends on the `git` cookbook, as the `sharing` recipe checks out the Emacs starter kit.
+
 ### users::default cookbook
 
 If running on Solaris 10, the system needs to have been bootstrapped to use the publically provided EveryCity IPS/pkg(5) repository at http://s10.pkg.ec.  In the Atalanta Systems environment this is still done manually, and no cookbook or bootstrap mechanism exists for this.

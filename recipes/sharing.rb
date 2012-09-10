@@ -1,3 +1,5 @@
+include_recipe "git"
+
 sharing_user = node['users']['sharing_user']
 puts "sharing user: #{sharing_user}"
 puts "base name #{node['users']['home_base']}"
@@ -60,4 +62,12 @@ if platform?("solaris2")
     owner sharing_user
     group sharing_user
   end
+end
+
+git "/home/#{home_dir}/.emacs.d" do
+  repository "https://github.com/technomancy/emacs-starter-kit.git"
+  reference "master"
+  user sharing_user
+  group sharing_user 
+  action :checkout
 end
