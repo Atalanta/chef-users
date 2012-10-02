@@ -1,6 +1,6 @@
 # Dropped off by Chef, thanks! 
 <% if @ssh_keys.respond_to? :each %>
-<%= @ssh_keys.join('\n') %> 
+<%= @ssh_keys.join("\n") %>
 <% else %> 
 <%= @ssh_keys %> 
 <% end %>
