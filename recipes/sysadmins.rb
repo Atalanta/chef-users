@@ -8,15 +8,17 @@ search(:users, 'groups:sysadmin') do |u|
   
   group = platform?("solaris2") ? u['gid'] : u['id']
 
-  if u.has_key?("shell")
-    if shell.scan('/').count == 0
-      shell = shell_for_platform(u["key"])
-    else
-      shell = u["key"]
-    end
-  else
-    shell = shell_for_platform(node["users"]["shell"])
-  end
+  shell=""
+
+  shell = u.has_key?("shell") ? shell_for_platform(u["shell"]) : shell_for_platform(node["users"]["shell"])    
+  
+  # if u.has_key?("shell")
+  #   if u["shell"].scan('/').count == 0
+  #     shell = shell_for_platform(u["shell"])
+  #   else
+  #     shell = u["shell"]
+  #   end
+  # else
 
   Chef::Log.debug("Shell calculated to be #{shell}")                  
 
