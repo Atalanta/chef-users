@@ -5,8 +5,6 @@ description      "Installs/Configures users"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          "2.0.5"
 
-depends "tarsnap"
-
 recipe "users", "Installs default profile"
 recipe "users::sysadmins", "Create/configure sysadmins users from users databag"
 recipe "users::sharing", "Create/configure usual users from users databag"
